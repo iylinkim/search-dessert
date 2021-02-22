@@ -21,7 +21,6 @@ class ImageInfo {
   render() {
     console.log(this.data.visible);
     if (this.data.visible) {
-      console.log(this.data.image);
       const { name, url, temperament, origin } = this.data.image;
 
       this.$imageInfo.innerHTML = `

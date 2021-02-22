@@ -18,9 +18,10 @@ class App {
       $target,
       initialData: this.data,
       onClick: async image => {
+        const details = await api.fetchDetail(image.id).then(result => result);
         this.imageInfo.setState({
           visible: true,
-          image
+          image: details.data
         });
       }
     });
