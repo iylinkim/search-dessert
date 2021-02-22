@@ -18,6 +18,11 @@ class ImageInfo {
     this.render();
   }
 
+  closeDetail() {
+    const imageInfo = document.querySelector(".ImageInfo");
+    imageInfo.style.display = "none";
+  }
+
   render() {
     console.log(this.data.visible);
     if (this.data.visible) {
@@ -26,15 +31,17 @@ class ImageInfo {
       this.$imageInfo.innerHTML = `
         <div class="content-wrapper">
           <div class="title">
-            <span>${name}</span>
+            <span>${name ? name : "정보없음"}</span>
             <div class="close">x</div>
           </div>
-          <img src="${url}" alt="${name}"/>        
+          <img src="${url}" alt="${name ? name : "정보없음"}"/>        
           <div class="description">
-            <div>성격: ${temperament}</div>
-            <div>태생: ${origin}</div>
+            <div>성격: ${temperament ? temperament : "정보없음"}</div>
+            <div>태생: ${origin ? origin : "정보없음"}</div>
           </div>
         </div>`;
+      const modal = document.querySelector(".close");
+      modal.addEventListener("click", this.closeDetail);
       this.$imageInfo.style.display = "block";
     } else {
       this.$imageInfo.style.display = "none";
