@@ -23,6 +23,12 @@ class ImageInfo {
     imageInfo.style.display = "none";
   }
 
+  handleKey(event) {
+    if (event.keyCode === 27) {
+      console.log(this)
+    }
+  }
+
   render() {
     console.log(this.data.visible);
     if (this.data.visible) {
@@ -42,6 +48,12 @@ class ImageInfo {
         </div>`;
       const modal = document.querySelector(".close");
       modal.addEventListener("click", this.closeDetail);
+      window.addEventListener("keydown", (event) => {
+        if(event.keyCode === 27){
+          this.$imageInfo.style.display = "none";
+        }
+      });
+      this.$imageInfo.addEventListener("click", () => this.$imageInfo.style.display = "none")
       this.$imageInfo.style.display = "block";
     } else {
       this.$imageInfo.style.display = "none";
