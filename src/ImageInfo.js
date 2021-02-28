@@ -30,7 +30,6 @@ class ImageInfo {
   }
 
   render() {
-    console.log(this.data.visible);
     if (this.data.visible) {
       const { name, url, temperament, origin } = this.data.image;
 

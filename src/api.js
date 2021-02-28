@@ -3,8 +3,13 @@ const API_ENDPOINT =
 
 const api = {
   fetchCats: async (keyword) => {
-    const res = await fetch(`${API_ENDPOINT}/api/cats/search?q=${keyword}`);
-    return await res.json();
+    try{
+
+      const res = await fetch(`${API_ENDPOINT}/api/cats/search?q=${keyword}`);
+      return await res.json();
+    }catch(e){
+      console.log("error message"+e)
+    }
   },
   fetchDetail: async (id) => {
     const res = await fetch(`${API_ENDPOINT}/api/cats/${id}`);

@@ -1,4 +1,4 @@
-console.log("app is running!");
+// console.log("app is running!");
 
 class App {
   $target = null;
@@ -9,13 +9,9 @@ class App {
 
     this.searchInput = new SearchInput({
       $target,
-      onSearch: async(keyword) => {
-        const { data }  = await api.fetchCats(keyword);
+      onSearch: async (keyword) => {
+        const { data } = await api.fetchCats(keyword);
         return this.setState(data);
-      },
-      getRandom: async () => {
-        const { data } = await api.fetchRandom();
-        return data;
       },
     });
 
@@ -40,10 +36,17 @@ class App {
         image: null,
       },
     });
+
+    this.randomLists = new Slide({
+      $target,
+      getRandom: async () => {
+        const { data } = await api.fetchRandom();
+        return data;
+      },
+    });
   }
 
   setState(nextData) {
-    console.log(this);
     this.data = nextData;
     this.searchResult.setState(nextData);
   }
