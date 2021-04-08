@@ -1,22 +1,43 @@
 const API_ENDPOINT =
   "https://oivhcpn8r9.execute-api.ap-northeast-2.amazonaws.com/dev";
 
-const api = {
+export const api = {
   fetchCats: async (keyword) => {
-    try{
-
+    try {
       const res = await fetch(`${API_ENDPOINT}/api/cats/search?q=${keyword}`);
-      return await res.json();
-    }catch(e){
-      console.log("error message"+e)
+      if (res.status === 200) {
+        return await res.json();
+      } else {
+        const error = await res.json();
+        throw error;
+      }
+    } catch (e) {
+      throw {
+        message: e.message,
+      };
     }
   },
   fetchDetail: async (id) => {
     const res = await fetch(`${API_ENDPOINT}/api/cats/${id}`);
-    return await res.json();
+    if (res.status === 200) {
+      return await res.json();
+    } else {
+      console.log(`${res.status}오류: ${res.statusText}`);
+    }
   },
   fetchRandom: async () => {
-    const res = await fetch(`${API_ENDPOINT}/api/cats/random50`);
-    return await res.json();
+    try {
+      const res = await fetch(`${API_ENDPOINT}/api/cats/random50`);
+      if (res.status === 200) {
+        return await res.json();
+      } else {
+        const error = await res.json();
+        throw error;
+      }
+    } catch (e) {
+      throw {
+        message: e.message,
+      };
+    }
   },
 };

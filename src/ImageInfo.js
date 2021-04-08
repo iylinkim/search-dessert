@@ -1,4 +1,4 @@
-class ImageInfo {
+export default class ImageInfo {
   $imageInfo = null;
   data = null;
 
@@ -32,7 +32,7 @@ class ImageInfo {
   render() {
     if (this.data.visible) {
       const { name, url, temperament, origin } = this.data.image;
-
+      console.log(this.data.image)
       this.$imageInfo.innerHTML = `
         <div class="content-wrapper">
           <div class="title">

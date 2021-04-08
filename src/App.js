@@ -1,6 +1,13 @@
 // console.log("app is running!");
 
-class App {
+import { api } from "./api.js";
+import ImageInfo from "./ImageInfo.js";
+import SearchInput from "./SearchInput.js";
+import SearchResult from "./SearchResult.js";
+import Slide from "./Slide.js";
+import Theme from "./Theme.js";
+
+export default class App {
   $target = null;
   data = [];
 
@@ -10,8 +17,10 @@ class App {
     this.searchInput = new SearchInput({
       $target,
       onSearch: async (keyword) => {
-        const { data } = await api.fetchCats(keyword);
-        return this.setState(data);
+        const result = await api.fetchCats(keyword);
+        if (result) {
+          return this.setState(result.data);
+        }
       },
     });
 
@@ -40,10 +49,20 @@ class App {
     this.randomLists = new Slide({
       $target,
       getRandom: async () => {
-        const { data } = await api.fetchRandom();
-        return data;
+        const result = await api.fetchRandom();
+        if (result) {
+          return result.data;
+        }
       },
     });
+
+    this.theme = new Theme({
+      $target,
+    });
+
+    // this.saving = new Saving({
+    //   savingData:this.data
+    // })
   }
 
   setState(nextData) {

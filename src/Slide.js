@@ -1,4 +1,4 @@
-class Slide {
+export default class Slide {
   $randomList;
   $randomCats;
   $btn = document.querySelectorAll(".js-btn");

@@ -19,6 +19,16 @@ body * {
   font-family: Goyang;
 }
 
+html.dark body{
+  background-color:#333;
+  color:#fff;
+}
+
+html.light body{
+  background-color:#fff;
+  color:#000;
+}
+
 *,
 *:before,
 *:after {
@@ -64,6 +74,7 @@ body * {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index:5;
 }
 
 .ImageInfo .title {
@@ -84,6 +95,11 @@ body * {
   background-color: #fff;
   border: 1px solid #eee;
   border-radius: 5px;
+  z-index:10;
+}
+
+html.dark .ImageInfo .content-wrapper {
+  background-color:#999;
 }
 
 .ImageInfo .content-wrapper img {
